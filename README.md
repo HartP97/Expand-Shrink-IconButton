@@ -44,3 +44,4 @@ Easiest way to get started is to copy the `ExpandShrinkButton class` from my [ma
 - [ ] catch if padding is higher than button size
 - [ ] add doc description for each attribute
 - [ ] let user choose to add a borderRadius or not
+- [ ] refactor similar parts inside the button class
