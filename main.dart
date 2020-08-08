@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
               }
             });
           },
-          buttonSize: 40.0,
+          buttonSize: 60.0,
           animDurationInMilSec: animDurationInMilSec,
           isExpanded: isExpanded,
           fillColor: Colors.transparent,
@@ -71,6 +71,7 @@ class ExpandShrinkButton extends StatelessWidget {
       @required this.fillColor,
       @required this.borderColor,
       @required this.onTap,
+      this.borderRadius,
       this.padding})
       : super(key: key);
 
@@ -82,10 +83,17 @@ class ExpandShrinkButton extends StatelessWidget {
   final Function onTap;
   final double padding;
 
+  /// BorderRadius of outer ButtonBox, default is set to 10px. Needs to be set to 0.0, of no BorderRadius is desired.
+  final double borderRadius;
+
+  static const double _defaultBorderRadius = 10;
+
   @override
   Widget build(BuildContext context) {
     double localPadding = padding != null && padding >= 0.0 ? padding : 0.0;
     double localIconSize = buttonSize - localPadding;
+
+    final double borderRadius = this.borderRadius ?? _defaultBorderRadius;
 
     return GestureDetector(
       onTap: onTap,
@@ -94,7 +102,7 @@ class ExpandShrinkButton extends StatelessWidget {
         width: buttonSize,
         decoration: BoxDecoration(
           color: Colors.grey.withOpacity(0.3),
-          borderRadius: BorderRadius.circular((buttonSize) * 0.15),
+          borderRadius: BorderRadius.circular(borderRadius),
         ),
         child: Stack(
           fit: StackFit.expand,
