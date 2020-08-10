@@ -128,45 +128,9 @@ class ExpandShrinkButton extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AnimatedContainer(
-                  duration: Duration(milliseconds: animDurationInMilSec),
-                  height: isExpanded ? localIconSize * 0.32 : 0.0,
-                  width: localIconSize * 0.85,
-                  decoration: BoxDecoration(
-                    color: fillColor,
-                    borderRadius: BorderRadius.circular((localIconSize) * 0.05),
-                    border: Border.all(
-                      width: 0.06 * localIconSize,
-                      color: borderColor,
-                    ),
-                  ),
-                ),
-                AnimatedContainer(
-                  duration: Duration(milliseconds: animDurationInMilSec ~/ 2),
-                  height: isExpanded ? localIconSize * 0.12 : 0.0,
-                  width: localIconSize * 0.85,
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(localIconSize * 0.05),
-                    border: Border.all(
-                      width: 0.06 * localIconSize,
-                      color: Colors.transparent,
-                    ),
-                  ),
-                ),
-                AnimatedContainer(
-                  duration: Duration(milliseconds: animDurationInMilSec),
-                  height: isExpanded ? localIconSize * 0.32 : 0.0,
-                  width: localIconSize * 0.85,
-                  decoration: BoxDecoration(
-                    color: fillColor,
-                    borderRadius: BorderRadius.circular(localIconSize * 0.05),
-                    border: Border.all(
-                      width: 0.06 * localIconSize,
-                      color: borderColor,
-                    ),
-                  ),
-                ),
+                bigIconTile(localIconSize),
+                bigIconSpacer(localIconSize),
+                bigIconTile(localIconSize),
               ],
             ),
 
@@ -174,56 +138,71 @@ class ExpandShrinkButton extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AnimatedContainer(
-                  duration: Duration(milliseconds: animDurationInMilSec),
-                  height: !isExpanded ? localIconSize * 0.2 : 0.0,
-                  width: localIconSize * 0.85,
-                  decoration: BoxDecoration(
-                    color: fillColor,
-                    borderRadius: BorderRadius.circular(buttonSize * 0.05),
-                    border: Border.all(
-                      width: 0.06 * localIconSize,
-                      color: borderColor,
-                    ),
-                  ),
-                ),
-                AnimatedContainer(
-                  duration: Duration(milliseconds: animDurationInMilSec ~/ 2),
-                  height: !isExpanded ? localIconSize * 0.05 : 0.0,
-                ),
-                AnimatedContainer(
-                  duration: Duration(milliseconds: animDurationInMilSec),
-                  height: !isExpanded ? localIconSize * 0.2 : 0.0,
-                  width: localIconSize * 0.85,
-                  decoration: BoxDecoration(
-                    color: fillColor,
-                    borderRadius: BorderRadius.circular(buttonSize * 0.05),
-                    border: Border.all(
-                      width: 0.06 * localIconSize,
-                      color: borderColor,
-                    ),
-                  ),
-                ),
-                AnimatedContainer(
-                  duration: Duration(milliseconds: animDurationInMilSec ~/ 2),
-                  height: !isExpanded ? localIconSize * 0.05 : 0.0,
-                ),
-                AnimatedContainer(
-                  duration: Duration(milliseconds: animDurationInMilSec),
-                  height: !isExpanded ? localIconSize * 0.2 : 0.0,
-                  width: localIconSize * 0.85,
-                  decoration: BoxDecoration(
-                    color: fillColor,
-                    borderRadius: BorderRadius.circular(buttonSize * 0.05),
-                    border: Border.all(
-                      width: 0.06 * localIconSize,
-                      color: borderColor,
-                    ),
-                  ),
-                ),
+                smallIconTile(localIconSize),
+                smallIconSpacer(localIconSize),
+                smallIconTile(localIconSize),
+                smallIconSpacer(localIconSize),
+                smallIconTile(localIconSize),
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget bigIconSpacer(double localIconSize) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: animDurationInMilSec ~/ 2),
+      height: isExpanded ? localIconSize * 0.12 : 0.0,
+      width: localIconSize * 0.85,
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(localIconSize * 0.05),
+        border: Border.all(
+          width: 0.06 * localIconSize,
+          color: Colors.transparent,
+        ),
+      ),
+    );
+  }
+
+  Widget bigIconTile(double localIconSize) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: animDurationInMilSec),
+      height: isExpanded ? localIconSize * 0.32 : 0.0,
+      width: localIconSize * 0.85,
+      decoration: BoxDecoration(
+        color: fillColor,
+        borderRadius: BorderRadius.circular(localIconSize * 0.05),
+        border: Border.all(
+          width: 0.06 * localIconSize,
+          color: borderColor,
+        ),
+      ),
+    );
+  }
+
+  /// Method that returns appropriate space in between the small tiles
+  Widget smallIconSpacer(double localIconSize) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: animDurationInMilSec ~/ 2),
+      height: !isExpanded ? localIconSize * 0.05 : 0.0,
+    );
+  }
+
+  /// Widget that displays the small Icon-Tile
+  Widget smallIconTile(double localIconSize) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: animDurationInMilSec),
+      height: !isExpanded ? localIconSize * 0.2 : 0.0,
+      width: localIconSize * 0.85,
+      decoration: BoxDecoration(
+        color: fillColor,
+        borderRadius: BorderRadius.circular(buttonSize * 0.05),
+        border: Border.all(
+          width: 0.06 * localIconSize,
+          color: borderColor,
         ),
       ),
     );
