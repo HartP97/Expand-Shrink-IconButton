@@ -41,7 +41,7 @@ Easiest way to get started is to copy the `ExpandShrinkButton class` from my [ma
 - [ ] show example with list view expanding and shrinking
 - [ ] let user decide over thickness of border
 - [ ] let user adjust the backgroundColor
-- [ ] add doc description for each attribute
 - [ ] refactor similar parts inside the button class
-- [ ] added defaultValue to Padding
+- [x] add doc description for each attribute
+- [x] added defaultValue to padding
 - [x] User can edit outer borderRadius
