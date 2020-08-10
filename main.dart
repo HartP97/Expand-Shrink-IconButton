@@ -75,25 +75,42 @@ class ExpandShrinkButton extends StatelessWidget {
       this.padding})
       : super(key: key);
 
+  /// ButtonSize in px (double-value)
   final double buttonSize;
+
+  /// Duration in milliseconds that the transition of the icon will last
   final int animDurationInMilSec;
+
+  /// This bool should be shared between the ListTiles and the ExpandShrinkIcon.
+  ///
+  /// isExpanded = true -> should be corresponding for the two thick tiles of the Icon
+  /// isExpanded = false -> should be corresponding to the three slim tiles
   final bool isExpanded;
+
+  /// Color that fills the Icon-Tiles in the middle of the Button.
   final Color fillColor;
+
+  /// BorderColor of the the Icon-tiles in the middle of the Button.
   final Color borderColor;
+
+  /// Function that can be passed to be executed on a simple Tap.
   final Function onTap;
+
+  /// Padding between outer border of the Button and outer border of the Icon. Default: 4.0px
   final double padding;
 
   /// BorderRadius of outer ButtonBox, default is set to 10px. Needs to be set to 0.0, of no BorderRadius is desired.
   final double borderRadius;
 
   static const double _defaultBorderRadius = 10;
+  static const double _defaultPadding = 4.0;
 
   @override
   Widget build(BuildContext context) {
-    double localPadding = padding != null && padding >= 0.0 ? padding : 0.0;
-    double localIconSize = buttonSize - localPadding;
-
     final double borderRadius = this.borderRadius ?? _defaultBorderRadius;
+    final double padding = this.padding ?? _defaultPadding;
+
+    double localIconSize = buttonSize - padding;
 
     return GestureDetector(
       onTap: onTap,
@@ -107,7 +124,7 @@ class ExpandShrinkButton extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            /// Big version of the Menu
+            /// Big version of the Icon
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -152,7 +169,8 @@ class ExpandShrinkButton extends StatelessWidget {
                 ),
               ],
             ),
-            //Small version of the menu
+
+            /// Small version of the Icon
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -192,9 +210,7 @@ class ExpandShrinkButton extends StatelessWidget {
                 ),
                 AnimatedContainer(
                   duration: Duration(milliseconds: animDurationInMilSec),
-                  height: !isExpanded
-                      ? localIconSize * 0.2
-                      : 0.0, // was 0.12 of buttonsize before and color filled of the box
+                  height: !isExpanded ? localIconSize * 0.2 : 0.0,
                   width: localIconSize * 0.85,
                   decoration: BoxDecoration(
                     color: fillColor,
